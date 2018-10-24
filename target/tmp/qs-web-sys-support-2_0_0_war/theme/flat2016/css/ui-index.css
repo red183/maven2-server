@@ -1,0 +1,48 @@
+* {font-family: "Microsoft Yahei", "微软雅黑", "Pinghei"}
+.navbar-inner {height: 60px;background: url(../images/head_b.png) repeat;}
+.navbar-inner .logo {float:left;margin-left: 15px; margin-top: 9px;margin-right: 44px;}
+.navbar-inner .brand {display:none;}
+.navbar .nav > li > a {
+    padding-top:20px;padding-bottom: 18px;}
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
+    background-color: #2e2a27;color:#ffce09;
+}
+
+/**无法完美解决不使用中间导航的工具条*/
+.jericho_tab .tab_pages {}
+
+#header {margin-bottom:0;}
+#main .container-fluid {padding: 0;}
+.container-fluid {padding: 0;}
+.container-fluid .row-fluid{float: left;}
+.container-fluid #right {overflow: hidden;}
+.container-fluid #left {background: url(../images/left_b.png) repeat;}
+.container-fluid a {background-color:#514746;color:#fffffd;border-color:#514746;}
+.accordion-group,.accordion-inner,.navbar-inner {border: 0;}
+.accordion-heading a:hover,.dropdown a:hover {background-color:#514746;color:#ffce09;}
+.accordion-heading .accordion-toggle {padding: 15px;font-size: 15px;padding-left:20px;}
+
+.nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus {
+    color:#ffce09;background-color: #2d2926;
+}
+.nav-list > .active > a::after {
+    background-image: url(../images/left_b_arrow.png);  content: "";  display: block;
+    width: 8px;height:16px;
+    position:relative;left:130px;top:-28px;
+}
+.accordion-inner {padding: 0;}
+.nav-list {margin:0;padding:0;}
+
+.accordion-inner .nav-list {margin-bottom: 0;}
+.accordion-inner .nav-list li a > i {display: none;}
+.accordion-inner .nav-list li a {margin:0;padding:0;padding-left:53px;height: 40px;line-height: 40px;}
+.nav > li > a {background-color: #3b3633;}
+.nav > li > a:hover, .nav > li > a:focus {background-color: #2d2926;}
+.accordion-group {margin-bottom: 0;}
+.icon-chevron-down::before, .icon-chevron-right::before {
+    float: right;
+}
+@-moz-document url-prefix() {
+    .icon-chevron-down::before, .icon-chevron-right::before {margin-top: -18px;}
+}
+#content, #right {background-color: #f1f1f3;}

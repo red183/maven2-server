@@ -1,0 +1,96 @@
+.control-group{
+	border-bottom:0;
+	margin-left:120px;
+}
+.input-xlarge{
+	width:390px;
+	height:30px;
+}
+.mybtn{
+	color:#fcd207;
+}
+.dbTxt{
+	width: 175px;
+}
+.input-xxlarge{
+	width:390px;
+}
+
+body form .form-actions {
+    padding: 0px 50px 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 60px;
+    margin-left: 200px;
+    background-color: #fff;
+    border-top: 0;
+}
+body form .form-actions #btnSubmit{
+	background-color:#fcd207;
+	display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #fcd207;
+    border-radius: 4px;	
+    background-image: -webkit-linear-gradient(top,#fcd207,#fcd207); 
+}
+ul.nav{
+	background-color:#f3f3f3;
+}
+table#contentTable thead th{
+	text-align:center;
+}
+table#contentTable tbody td{
+	text-align:center;
+}
+table#contentTable tbody td .icon{
+	display:inline-block;
+	width:15px;
+	height:15px;
+	padding:0 6px 0 6px;
+}
+table#contentTable tbody td .change{
+	background: url("../images/modify.png") no-repeat center center;
+}
+table#contentTable tbody td .bind{
+	background: url("../images/bind-team.png") no-repeat center center;
+}
+table#contentTable tbody td .delete{
+	background: url("../images/delete.png") no-repeat center center;
+}
+table#contentTable tbody td .change:hover{
+	background: url("../images/modify_sel.png") no-repeat center center;
+}
+table#contentTable tbody td .bind:hover{
+	background: url("../images/bind-team_sel.png") no-repeat center center;
+}
+table#contentTable tbody td .delete:hover{
+	background: url("../images/delete_sel.png") no-repeat center center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

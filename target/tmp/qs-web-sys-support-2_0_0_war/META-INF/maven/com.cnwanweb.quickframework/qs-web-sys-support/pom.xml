@@ -1,0 +1,260 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>com.cnwanweb.quickframework</groupId>
+        <artifactId>framework-quick-site</artifactId>
+        <version>2.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>qs-web-sys-support</artifactId>
+    <packaging>war</packaging>
+    <name>qs-web-sys-support</name>
+    <url>http://maven.apache.org</url>
+    <dependencies>
+        <dependency>
+            <groupId>com.cnwanweb.quickframework</groupId>
+            <artifactId>qs-web-support</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cnwanweb.quickframework</groupId>
+            <artifactId>qs-web-activiti-support</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cnwanweb.quickframework</groupId>
+            <artifactId>qs-web-codegen-support</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <!--<dependency>
+            <groupId>com.cnwanweb.quickframework</groupId>
+            <artifactId>qs-web-api-support</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cnwanweb.quickframework</groupId>
+            <artifactId>qs-web-vpi-support</artifactId>
+            <version>${parent.version}</version>
+        </dependency>-->
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.html</include>
+                    <include>**/*.json</include>
+                    <include>**/*.key</include>
+                    <include>**/license</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <!-- Compiler 插件, 设定JDK版本 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.2</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <!-- 打包jar文件时，配置manifest文件，加入lib包的jar依赖 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>com/cnwanweb/quickframework/**</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- war 打包插件, 设定war包名称不带版本号 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <packagingExcludes>
+                        WEB-INF/classes/com/**,
+                        WEB-INF/lib/**
+                    </packagingExcludes>
+                    <!--<packagingExcludes>
+                        %regex[WEB-INF/lib/((?!ckfinder)(?!activiti)(?!qs-web)-*.*.jar)]
+                    </packagingExcludes>-->
+                    <!-- <warName>${project.name}</warName> -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <!-- jetty插件 -->
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty.version}</version>
+                <configuration>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>${webserver.port}</port>
+                        </connector>
+                    </connectors>
+                    <webAppConfig>
+                        <!--<defaultsDescriptor>dev/webdefault.xml</defaultsDescriptor>-->
+                        <contextPath>/${project.name}</contextPath>
+                        <allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
+                        <!--<unpackOverlays>true</unpackOverlays>-->
+                        <!--<baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
+                            <resourcesAsCSV>src/main/webapp</resourcesAsCSV>
+                        </baseResource>-->
+                    </webAppConfig>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>org.mortbay.util.URI.charset</name>
+                            <value>${project.build.sourceEncoding}</value>
+                        </systemProperty>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+
+            <!-- resource插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+            </plugin>
+
+            <!-- install插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>${project.artifactId}</artifactId>
+                            <version>${project.version}</version>
+                            <file>${project.basedir}/target/${project.artifactId}-${project.version}.jar</file>
+                            <packaging>jar</packaging>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- clean插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+            </plugin>
+
+            <!-- ant插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+            </plugin>
+
+            <!-- dependency插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.5.1</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.2</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-archetype-plugin</artifactId>
+                <version>3.0.1</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>http://120.76.29.187/nexus/content/repositories/releases</url>
+        </repository>
+    </distributionManagement>
+
+    <profiles>
+        <!-- 初始化数据库 -->
+        <profile>
+            <id>init-db</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.dbunit</groupId>
+                    <artifactId>dbunit</artifactId>
+                    <version>2.4.8</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.poi</groupId>
+                    <artifactId>poi</artifactId>
+                    <version>3.2-FINAL</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.7</version>
+                        <configuration>
+                            <target>
+                                <property name="dbunit.datatype" value="org.dbunit.ext.mysql.MySqlDataTypeFactory" />
+                                <property file="src/main/resources/application.properties" />
+                                <sql driver="${jdbc.driver}" url="${jdbc.url}" userid="${jdbc.username}" password="${jdbc.password}"
+                                     onerror="continue" encoding="${project.build.sourceEncoding}">
+                                    <classpath refid="maven.test.classpath" />
+                                    <transaction src="dev/db/quicksite_${jdbc.type}.sql"/>
+                                    <transaction src="dev/db/quicksite_quartz_mysql.sql"/>
+                                </sql>
+                                <taskdef name="dbunit" classname="org.dbunit.ant.DbUnitTask" classpathref="maven.test.classpath" />
+                                <dbunit driver="${jdbc.driver}" url="${jdbc.url}" userid="${jdbc.username}"
+                                        password="${jdbc.password}">
+                                    <dbconfig>
+                                        <property name="datatypeFactory" value="${dbunit.datatype}" />
+                                    </dbconfig>
+                                    <classpath refid="maven.test.classpath" />
+                                    <operation type="INSERT" src="dev/db/quicksite_data.xls" format="xls" transaction="true"/>
+                                </dbunit>
+                            </target>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

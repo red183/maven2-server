@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="act" default="welcome">
+
+	<!-- properties from key value -->
+	<property name="designs" value="designs" />
+	<property name="deployments" value="deployments" />
+
+	<!-- 显示欢迎信息以及操作提示 -->
+	<target name="welcome">
+		<echo>Activiti打包程序，请输入命令后操作！</echo>
+	</target>
+
+	<!--<target name="oa.selfRepair">
+		<echo>打包流程定义：自助派修流程</echo>
+		<copy file="designs/oa/selfRepair/selfRepair.bpmn" tofile="${designs}/oa/selfRepair.bpmn20.xml" />
+		<zip destfile="${deployments}/oa/selfRepair/selfRepair.bar" basedir="${designs}/oa/selfRepair" update="true" includes="*.xml,*.png" />
+		<delete file="${designs}/oa/selfRepair/selfRepair.bpmn20.xml" />
+	</target>
+
+	<target name="template.demo">
+		<echo>打包流程定义：用户昵称修改案例流程</echo>
+		<copy file="designs/template/demo/demoAccountRename.bpmn" tofile="${designs}/template/demoAccountRename.bpmn20.xml" />
+		<zip destfile="${deployments}/template/demo/demoAccountRename.bar" basedir="${designs}/template/demo" update="true" includes="*.xml,*.png" />
+		<delete file="${designs}/template/demo/demoAccountRename.bpmn20.xml" />
+	</target>-->
+</project>

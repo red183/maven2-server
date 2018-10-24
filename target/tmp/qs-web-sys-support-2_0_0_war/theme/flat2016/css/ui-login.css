@@ -1,0 +1,46 @@
+* {font-family: "Microsoft Yahei", "微软雅黑", "Pinghei"}
+body {
+    background: black url("../images/login_b.png") no-repeat scroll center center;background-size:100%;
+    left: 0;  position: absolute;  right: 0;  top: 0;bottom: 0;
+    width: 100%; height:100%; z-index: 1;overflow: hidden;
+}
+.header, .form-signin-heading,.dropdown,.form-signin .input-label {display: none;}
+.form-signin {
+    margin-left: 94px; margin-top: 140px;
+    width: 360px;
+    padding-top: 52px;padding-left: 51px;padding-right: 51px;padding-bottom:60px;
+}
+.logo_b_h {
+    background: url("../images/login_f_h.png") no-repeat scroll center center;height:52px;
+    margin: 0 35px;margin-bottom: 40px;
+}
+.logo_b_b {
+    border-radius: 5px;
+    border: 2px solid #bfbfbf;
+}
+
+.logo_f_line {
+    background: url("../images/login_f_line.png") no-repeat scroll center center;
+    height: 1px;
+}
+
+button.btn.btn-large, input.btn.btn-large[type="submit"] {
+    background: url("../images/login_btn_b.png") no-repeat scroll center center;
+    width: 360px; height: 50px;padding: 0;color: #252b37;
+}
+
+label {margin-top:26px;margin-bottom: 28px; color: #787878;}
+
+.form-signin .input-block-level {
+    border: 0;padding: 0;margin: 25px;box-shadow:none;height:25px;
+    line-height:25px;text-indent: 3px;
+}
+.input-block-level {width:300px;}
+
+.logo_f_username {
+    background: url("../images/login_f_username.png") no-repeat scroll center center;
+    width: 25px; height: 25px;
+    position: relative;left: 25px;top: 25px;
+}
+
+.footer {position:absolute;bottom: 68px;left: 480px;color:white;}
